@@ -74,3 +74,7 @@ pnpm build
 - 监听 bot 的回执消息判断成功或失败
 
 依据的 bot 源码：[dz114879/fox-dayi-bot](https://github.com/dz114879/fox-dayi-bot)、[Echoer009/Odysseia-Gacha](https://github.com/Echoer009/Odysseia-Gacha)。bot 改了命令名、弹窗字段或回执格式时，插件需要跟着更新。
+
+## 许可证
+
+[GPL-3.0-or-later](LICENSE)，与 Vencord 保持一致。可以自由使用、修改和分发，但修改后再发布也必须以同样的许可证开源。

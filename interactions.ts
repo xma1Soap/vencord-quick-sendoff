@@ -1,4 +1,10 @@
 /*
+ * QuickSendoff, a Vencord userplugin
+ * Copyright (c) 2026 xma1Soap
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
+/*
  * QuickSendoff - 底层交互工具
  * 负责：查找应用命令、发送交互、解析/提交弹窗、点击组件、等待 Flux 事件。
  * 与具体 bot 无关，fox 和 gacha 的流程都基于这里。

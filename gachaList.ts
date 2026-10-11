@@ -1,4 +1,10 @@
 /*
+ * QuickSendoff, a Vencord userplugin
+ * Copyright (c) 2026 xma1Soap
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
+/*
  * 从 类脑娘-gacha 拉取全部预设消息名称。
  * 调用的是只读命令 /预设消息 列表（仅自己可见、无冷却、不发任何东西到公屏），
  * 依据 Echoer009/Odysseia-Gacha：

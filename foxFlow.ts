@@ -1,4 +1,10 @@
 /*
+ * QuickSendoff, a Vencord userplugin
+ * Copyright (c) 2026 xma1Soap
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
+/*
  * fox青丘掌事 · 预约送走 流程
  * 依据 dz114879/fox-dayi-bot 的 cogs/quick_punish/commands.py：
  *   - 消息右键命令名「预约送走」，送走对象 = 被右键消息的作者

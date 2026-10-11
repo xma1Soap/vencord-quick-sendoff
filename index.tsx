@@ -1,4 +1,10 @@
 /*
+ * QuickSendoff, a Vencord userplugin
+ * Copyright (c) 2026 xma1Soap
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
+/*
  * QuickSendoff · 一键送走
  * 给类脑答疑组用：右键违规消息 → 一键送走 → 选预设
  *   1) 调 fox青丘掌事 的「预约送走」，自动填原因/私信模板/延迟并提交

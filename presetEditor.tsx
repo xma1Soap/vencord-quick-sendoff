@@ -1,4 +1,10 @@
 /*
+ * QuickSendoff, a Vencord userplugin
+ * Copyright (c) 2026 xma1Soap
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
+/*
  * 可视化预设编辑器：每个预设一张卡片，填空式编辑，改动即时保存。
  * 只用原生表单元素 + Discord 的 CSS 变量，避免依赖不同版本 Vencord/Discord 的内部组件。
  */

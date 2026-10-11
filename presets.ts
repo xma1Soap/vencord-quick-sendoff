@@ -1,3 +1,9 @@
+/*
+ * QuickSendoff, a Vencord userplugin
+ * Copyright (c) 2026 xma1Soap
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
 export interface Preset {
     /** 右键菜单里显示的名字 */
     name: string;

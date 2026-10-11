@@ -1,4 +1,10 @@
 /*
+ * QuickSendoff, a Vencord userplugin
+ * Copyright (c) 2026 xma1Soap
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
+/*
  * 类脑娘-gacha · 公屏小作文 流程
  * 依据 Echoer009/Odysseia-Gacha 的 cogs/preset_messages.py。
  *
