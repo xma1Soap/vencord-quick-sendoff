@@ -14,9 +14,22 @@
 
 import * as DataStore from "@api/DataStore";
 import { Logger } from "@utils/Logger";
-import { AuthenticationStore, closeAllModals, FluxDispatcher, RestAPI, SnowflakeUtils } from "@webpack/common";
+import { AuthenticationStore, closeAllModals, FluxDispatcher, RestAPI, showToast, SnowflakeUtils } from "@webpack/common";
 
 export const logger = new Logger("QuickSendoff", "#e67e22");
+
+/**
+ * 右下角提示。Discord 2026 年 10 月换了新提示框，Vencord 1.15.12 起
+ * showToast 只接受 { text, variant }，旧的 showToast(文字, "failure") 写法会失效。
+ */
+export function toast(text: string, variant: "default" | "success" | "critical" = "default") {
+    try {
+        showToast({ text, variant });
+    } catch (e) {
+        // 提示失败不能影响送走流程本身
+        logger.warn("显示提示失败", text, e);
+    }
+}
 
 export interface Ctx {
     guildId: string;

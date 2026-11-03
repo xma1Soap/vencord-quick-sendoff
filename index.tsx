@@ -13,16 +13,14 @@
 
 import { NavContextMenuPatchCallback } from "@api/ContextMenu";
 import definePlugin from "@utils/types";
-// 不同版本 Vencord 的类型包路径不一样，这里直接放宽
-type Message = any;
-import { Alerts, ChannelStore, Menu, showToast } from "@webpack/common";
+import type { Message } from "@vencord/discord-types";
+import { Alerts, ChannelStore, Menu } from "@webpack/common";
 
 import { runFox } from "./foxFlow";
 import { runGacha } from "./gachaFlow";
-import { Ctx, describeError, logger } from "./interactions";
+import { Ctx, describeError, logger, toast } from "./interactions";
 import { parsePresets, Preset } from "./presets";
 import { settings } from "./settings";
-
 
 let running = false;
 
@@ -31,21 +29,21 @@ async function execute(message: Message, ctx: Ctx, preset: Preset) {
     running = true;
     let foxDone = false;
     try {
-        showToast(`正在预约送走 ${message.author.username}…`);
+        toast(`正在预约送走 ${message.author.username}…`);
         const notice = await runFox(ctx, foxAppId, message, preset);
         foxDone = true;
         logger.info("fox 成功", notice);
 
         if (enableGacha && gachaAppId && preset.gachaTitle) {
             await runGacha(ctx, gachaAppId, message, preset);
-            showToast("已预约送走并公示小作文", "success");
+            toast("已预约送走并公示小作文", "success");
         } else {
-            showToast("预约送走成功", "success");
+            toast("预约送走成功", "success");
         }
     } catch (e: any) {
         logger.error("一键送走失败", e);
         const msg = describeError(e);
-        showToast(foxDone ? `已预约送走，但公示失败：${msg}，请手动补发` : `送走失败：${msg}`, "failure");
+        toast(foxDone ? `已预约送走，但公示失败：${msg}，请手动补发` : `送走失败：${msg}`, "critical");
     } finally {
         running = false;
     }
@@ -53,28 +51,28 @@ async function execute(message: Message, ctx: Ctx, preset: Preset) {
 
 /** 抓包模式下的安全测试：只走到 gacha 的确认预览，然后自动取消 */
 async function testGacha(message: Message, preset: Preset) {
-    if (running) return showToast("上一个操作还在进行中", "failure");
+    if (running) return toast("上一个操作还在进行中", "critical");
     const channel = ChannelStore.getChannel(message.channel_id);
-    if (!channel?.guild_id) return showToast("只能在服务器里使用", "failure");
+    if (!channel?.guild_id) return toast("只能在服务器里使用", "critical");
     running = true;
     try {
         await runGacha({ guildId: channel.guild_id, channelId: channel.id }, settings.store.gachaAppId, message, preset, true);
-        showToast("gacha 测试通过（已自动取消，未发送）", "success");
+        toast("gacha 测试通过（已自动取消，未发送）", "success");
     } catch (e: any) {
         logger.error("gacha 测试失败", e);
-        showToast(`gacha 测试失败：${describeError(e)}`, "failure");
+        toast(`gacha 测试失败：${describeError(e)}`, "critical");
     } finally {
         running = false;
     }
 }
 
 function start(message: Message, preset: Preset) {
-    if (running) return showToast("上一个送走还在进行中", "failure");
-    if (message.author.bot) return showToast("不能对 Bot 使用", "failure");
-    if (!settings.store.foxAppId) return showToast("先在插件设置里填 fox 的应用 ID", "failure");
+    if (running) return toast("上一个送走还在进行中", "critical");
+    if (message.author.bot) return toast("不能对 Bot 使用", "critical");
+    if (!settings.store.foxAppId) return toast("先在插件设置里填 fox 的应用 ID", "critical");
 
     const channel = ChannelStore.getChannel(message.channel_id);
-    if (!channel?.guild_id) return showToast("只能在服务器里使用", "failure");
+    if (!channel?.guild_id) return toast("只能在服务器里使用", "critical");
     const ctx: Ctx = { guildId: channel.guild_id, channelId: channel.id };
 
     if (!settings.store.confirmBeforeRun) return void execute(message, ctx, preset);

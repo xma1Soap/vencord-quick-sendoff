@@ -13,12 +13,12 @@
  *   - 失败：内容以 ❌ 开头的消息
  */
 
-import { Preset, validateDelay } from "./presets";
-import { rememberTemplates } from "./settings";
 import {
     closeBotModal, Ctx, describeError, findField, findMessageCommand, invalidateCommand, logger, ModalInfo, newNonce,
     parseModal, runMessageCommand, submitModal, waitForDispatch
 } from "./interactions";
+import { Preset, validateDelay } from "./presets";
+import { rememberTemplates } from "./settings";
 
 const COMMAND_NAME = "预约送走";
 
