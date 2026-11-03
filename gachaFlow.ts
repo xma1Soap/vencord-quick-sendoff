@@ -19,11 +19,11 @@
  *   - 以 ❌ / ⏳ / 🚫 开头                        → 失败（找不到预设 / 全局 15 秒冷却 / 没权限）
  */
 
-import { Preset } from "./presets";
 import {
     clickComponent, collectComponents, Ctx, findCommand, logger, newNonce,
     runSlashCommand, waitForDispatch
 } from "./interactions";
+import { Preset } from "./presets";
 
 const COMMAND_GROUP = "预设消息";
 const SUBCOMMAND = "发送";

@@ -12,6 +12,8 @@
 
 这是一个 Vencord **userplugin**，需要用源码版 Vencord 构建。
 
+> 需要 **Vencord v1.15.12 或更新**（2026 年 10 月中旬起的版本）。Discord 当时换了新的提示框，旧版 Vencord 编译本插件会报错。已在 v1.15.15 上测试编译通过。Vencord 太旧时先在 Vencord 目录里 `git pull` 再 `pnpm install`。
+
 ```bash
 cd 你的Vencord目录/src/userplugins
 git clone https://github.com/xma1Soap/vencord-quick-sendoff quickSendoff
